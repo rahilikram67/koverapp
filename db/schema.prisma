@@ -1,0 +1,147 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  name           String?
+  email          String    @unique
+  hashedPassword String?
+  role           String    @default("USER")
+  sessions       Session[]
+  tokens         Token[]
+}
+
+model Session {
+  id                 Int       @id @default(autoincrement())
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  expiresAt          DateTime?
+  handle             String    @unique
+  hashedSessionToken String?
+  antiCSRFToken      String?
+  publicData         String?
+  privateData        String?
+  userId             Int?
+  user               User?     @relation(fields: [userId], references: [id])
+}
+
+model Token {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  hashedToken String
+  type        TokenType
+  expiresAt   DateTime
+  sentTo      String
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@unique([hashedToken, type], name: "Token.hashedToken_type_unique")
+}
+
+model Role {
+  id Int @id @default(autoincrement())
+}
+
+model Bestbuy {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  apiKey     String
+  categories String[]
+}
+
+model Harrod {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MockConnector {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  smtpHost     String
+  smtpPassword String
+  smtpPort     Int
+  smtpUsername String
+}
+
+model ProductAssetValue {
+  id                  Int      @id @default(autoincrement())
+  assetValue          Float
+  currency            String   @default("SGD")
+  conversionRate      Float?
+  convertedAssetValue Float?
+  source              String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  universeId          Int
+  retrievalDate       DateTime @default(now())
+  universe            Universe @relation(fields: [universeId], references: [id])
+}
+
+model Universe {
+  id                 Int                 @id @default(autoincrement())
+  underwriterClassId String
+  categories         String[]
+  brand              String?
+  name               String
+  description        String?
+  variant            String?
+  manufactureDate    DateTime?
+  manufactureDateStr String?
+  source             Source
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  productId          String
+  latestValue        Float?
+  condition          String?             @db.VarChar
+  valueHistory       ProductAssetValue[]
+}
+
+model Mapping {
+  id                 Int      @id @default(autoincrement())
+  underwriterClassId String
+  brand              String
+  name               String
+  description        String
+  variant            String
+  manufactureDate    String
+  assetValue         String
+  currency           String?
+  mappedTo           Source
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+enum TokenType {
+  RESET_PASSWORD
+}
+
+enum Source {
+  BEST_BUY
+  HARRODS
+  WATCHCHART
+  REBAG
+  String
+  currency           String?
+  mappedTo           Source
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}

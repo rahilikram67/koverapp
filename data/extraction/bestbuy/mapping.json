@@ -1,0 +1,10 @@
+{
+  "name": "name",
+  "salePrice": "salePrice",
+  "sku": "sku",
+  "manufacturer": "manufacturer",
+  "shortDescription": "shortDescription",
+  "color": "color",
+  "releaseDate": "releaseDate",
+  "categoryPath": "categoryPath"
+}

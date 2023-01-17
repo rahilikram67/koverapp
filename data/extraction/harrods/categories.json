@@ -1,0 +1,37 @@
+{
+  "baseUrl": "https://www.harrods.com/en-sg",
+  "categories": [
+    {
+      "name": "Handbags",
+      "url": "/shopping/women-bags?icid=megamenu_shop_women_accessories-bags_all-bags"
+    },
+    {
+      "name": "Handbags",
+      "url": "/shopping/women-accessories-wallets-purses?icid=megamenu_shop_women_accessories-bags_wallets-purses"
+    },
+    {
+      "name": "Handbags",
+      "url": "/shopping/men-bags?icid=megamenu_shop_men_accessories-bags_all-bags"
+    },
+    {
+      "name": "Handbags",
+      "url": "/shopping/men-accessories-wallets?icid=megamenu_shop_men_accessories-bags_wallets"
+    },
+    {
+      "name": "Handbags",
+      "url": "/shopping/luggage?icid=megamenu_shop_women_accessories-bags_luggage"
+    },
+    {
+      "name": "Jewellery",
+      "url": "/shopping/jewellery-watches-fine-jewellery?icid=megamenu_shop_jewellery-watches_fine-jewellery_all-fine-jewellery"
+    },
+    {
+      "name": "Jewellery",
+      "url": "/shopping/jewellery-watches-fashion-jewellery?icid=megamenu_shop_jewellery-watches_fashion-jewellery_all-fashion-jewellery"
+    },
+    {
+      "name": "Jewellery",
+      "url": "/shopping/men-accessories-jewellery?icid=megamenu_shop_jewellery-watches_mens-jewellery_all-mens-jewellery"
+    }
+  ]
+}

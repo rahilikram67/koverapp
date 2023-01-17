@@ -1,0 +1,10 @@
+{
+  "name": "[data-test='productCard-productName']",
+  "assetValue": ".ehm8gc87 > span",
+  "sku": "sku",
+  "brand": "[data-test='productCard-brandName']",
+  "description": ".css-x8m1kr",
+  "variant": ".css-1yixpad",
+  "releaseDate": "releaseDate",
+  "categoryPath": ".css-1dbk8iy > li > a"
+}
